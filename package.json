@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.1",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0"
+  },
+  "scripts": {
+    "devstart": "nodemon ./app.js"
+  }
+}
