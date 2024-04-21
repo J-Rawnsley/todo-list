@@ -1,6 +1,7 @@
 //connect to db
 const mongoose = require('mongoose');
 const connectString = require('./connectString');
+const path = require("path");
 
 console.log(connectString);
 
@@ -27,6 +28,9 @@ app.set('view engine', 'pug');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//enable css
+app.use(express.static(path.join(__dirname, 'public')));
+
 //create a model
 const Schema = mongoose.Schema;
 
@@ -35,19 +39,6 @@ let ItemSchema = new Schema({
 });
 
 const Item = mongoose.model('Item', ItemSchema);
-
-//add some data using the models
-const testItem = new Item({
-	content: 'This is a test item.',
-});
-
-// testItem.save();
-
-// new Item({
-// 	content: 'This is a second test item.',
-// }).save();
-
-// Item.deleteMany({}).then(console.log(" all items deleted"))
 
 //create a list of items and pass them to the render function
 
@@ -60,7 +51,7 @@ const itemList = async (req, res, next) => {
 	});
 };
 
-//call the render function to display the main page
+//call the item list function to display the main page
 app.get('/', (req, res) => {
 	itemList(req, res);
 });

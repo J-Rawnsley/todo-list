@@ -1,0 +1,36 @@
+
+form, h1, h4 {
+	text-align: center;
+  }
+
+  body {
+	margin-top: 15px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  
+  form input,
+  form button {
+	margin: 10px;
+  }
+  
+  ul {
+	text-align: center;
+	padding-left: 0;
+  }
+  
+  ul li {
+	margin-bottom: 10px;
+	list-style: none;
+	border: 2px solid #007bff;
+	border-radius: 20px;
+	padding: 10px 20px;
+	display: block;
+	width: fit-content;
+	margin: 10px auto;
+  }
+  
+  a[href="/clear"] {
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+  }
