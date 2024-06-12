@@ -72,8 +72,10 @@ app.post('/', async (req, res) => {
 		content: req.body.content,
 	});
 	const allItems = await Item.find({}).exec();
-	if (allItems.length < 10) {
+	if (allItems.length < 10 && newItem.content.length > 0) {
 		await newItem.save();
+		
 	}
 	itemList(req, res);
+	
 });
