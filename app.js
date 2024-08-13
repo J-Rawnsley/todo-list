@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 
 const path = require('path');
 const helmet = require('helmet');
+const rateLimit = require("express-rate-limit")
+const limiter = rateLimit({
+	windowMs: 60 * 1000,
+	max: 20
+})
 
 //for use in development, disable during production
 const connectString = require('./connectString');
@@ -45,6 +50,9 @@ app.use(
     },
   })
 );
+
+//use rate limiter to limit number of requests to the database
+app.use(limiter)
 
 //create a model
 const Schema = mongoose.Schema;
