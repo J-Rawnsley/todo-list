@@ -1,15 +1,20 @@
 //connect to db
 const mongoose = require('mongoose');
-const connectString = require('./connectString');
+
 const path = require('path');
 const helmet = require('helmet');
 
-console.log(connectString);
+//for use in development, disable during production
+const connectString = require('./connectString');
+
+//for use in production, disable during development
+// const connectString = process.env.CONNECT_STRING
 
 async function main() {
   await mongoose.connect(connectString);
   console.log('connected to database');
 }
+
 
 main().catch((err) => console.log(err));
 
