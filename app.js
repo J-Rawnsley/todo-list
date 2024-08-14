@@ -10,10 +10,10 @@ const limiter = rateLimit({
 })
 
 //for use in development, disable during production
-// const connectString = require('./connectString');
+const connectString = require('./connectString');
 
 //for use in production, disable during development
-const connectString = process.env.CONNECT_STRING
+// const connectString = process.env.CONNECT_STRING
 
 async function main() {
   await mongoose.connect(connectString);

@@ -10,6 +10,8 @@ html(lang='en')
   body
     h1 To Do List
     h4 Click on an item to delete it
+    p.text-center by Joe Rawnsley. Code on 
+      a(href="https://github.com/J-Rawnsley/todo-list") Github
 
     ul 
       for item in items 
@@ -21,3 +23,4 @@ html(lang='en')
       button.btn.btn-primary(type="submit") Add 
 
     a(href="/clear") Clear
+  
