@@ -39,5 +39,3 @@ exports.deleteItem = async (req, res) => {
 exports.clearAll = (req, res) => {
 	Item.deleteMany({}).then(res.redirect('/'));
 };
-
-
