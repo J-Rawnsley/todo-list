@@ -61,7 +61,7 @@ let ItemSchema = new Schema({
   content: { type: 'string' },
 });
 
-const Item = mongoose.model('Item', ItemSchema);
+const Item = require("./models/item.js")
 
 //create a list of items and pass them to the render function
 
