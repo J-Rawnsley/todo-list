@@ -54,49 +54,19 @@ app.use(
 //use rate limiter to limit number of requests to the database
 app.use(limiter)
 
-//create a model
-const Schema = mongoose.Schema;
-
-let ItemSchema = new Schema({
-  content: { type: 'string' },
-});
-
+//import model
 const Item = require("./models/item.js")
 
-//create a list of items and pass them to the render function
+//import controller
+const mainController = require("./controllers/mainController.js")
 
-const itemList = async (req, res, next) => {
-  const allItems = await Item.find({}).exec();
-  console.log(allItems);
 
-  res.render('main', {
-    items: allItems,
-  });
-};
+//call controller functions to show the list, add, delete and clear items
 
-//call the item list function to display the main page
-app.get('/', (req, res) => {
-  itemList(req, res);
-});
+app.get('/', mainController.displayToDoList)
 
-app.get('/delete/:id', async (req, res) => {
-  await Item.findByIdAndDelete(req.params.id);
-  res.redirect('/');
-});
+app.get('/delete/:id', mainController.deleteItem);
 
-app.get('/clear', (req, res) => {
-  Item.deleteMany({}).then(res.redirect('/'));
-});
+app.get('/clear', mainController.clearAll);
 
-//add an item
-app.post('/', async (req, res) => {
-  console.log('post request');
-  const newItem = new Item({
-    content: req.body.content,
-  });
-  const allItems = await Item.find({}).exec();
-  if (allItems.length < 10 && newItem.content.length > 0) {
-    await newItem.save();
-  }
-  itemList(req, res);
-});
+app.post('/', mainController.addItem);
